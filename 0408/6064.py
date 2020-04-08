@@ -1,6 +1,5 @@
 import sys
 input = sys.stdin.readline
-MAX = 1600000000
 test_case = int(input())
 for _ in range(test_case):
     M, N, x, y = map(int, input().rstrip().split())
@@ -9,7 +8,7 @@ for _ in range(test_case):
     year = x
     a = x % M
     b = x % N
-    while b != y and year <= MAX:
+    while b != y and year <= M * N:
         a = (a + M) % M
         b = (b + M) % N
         year += M
