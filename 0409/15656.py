@@ -3,18 +3,13 @@ input = sys.stdin.readline
 N, M = map(int, input().split())
 num_list = list(map(int, input().rstrip().split()))
 num_list.sort()
-check = [False] * N
 result = []
-def go(N, M, index, base_idx):
+def go(N, M, index):
     if index == M:
         print(*result, sep = " ", end = "\n")
     else:
-        for iter in range(base_idx, N):
-            if check[iter]:
-                continue
-            check[iter] = True
+        for iter in range(N):
             result.append(num_list[iter])
-            go(N, M, index + 1, iter)
-            check[iter] = False
+            go(N, M, index + 1)
             result.pop()
-go(N, M, 0, 0)
+go(N, M, 0)
