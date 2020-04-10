@@ -1,14 +1,55 @@
-from itertools import combinations
-N, M = map(int, input().split())
-num_list = list(map(int, input().split()))
-num_list.sort()
-ans = []
-for comb in combinations(num_list, 3):
-    comb_list = list(comb)
-    num_sum = sum(comb_list)
-    if num_sum > M:
-        continue
-    comb_list.append(num_sum)
-    ans.append(comb_list)
-ans.sort(key = lambda x : x[-1])
-print(ans[-1][-1])
+word = input()
+length = len(word)
+index = 0
+character = 0
+while index < length:
+    if word[index] in "cdlnsz":
+        if index + 1 < length:
+            """
+            c=
+            c-
+            d-
+            s=
+            z=
+
+            lj
+            nj
+
+            dz=
+            
+            """
+            if word[index + 1] in "=-":
+                index += 2
+                character += 1
+            elif word[index] in "ln":
+                if word[index + 1] == "j":
+                    index += 2
+                    character += 1
+                else:
+                    index += 1
+                    character += 1
+            elif word[index] == "d":
+                if word[index + 1] == "z":
+                    if index + 2 < length:
+                        if word[index + 2] == "=":
+                            index += 3
+                            character += 1
+                        else:
+                            index += 2
+                            character += 2
+                    else:
+                        character += 2
+                        index += 2
+                else:
+                    index += 1
+                    character += 1
+            else:
+                index += 1
+                character += 1
+        else:
+            index += 1
+            character += 1
+    else:
+        index += 1
+        character += 1
+print(character)
