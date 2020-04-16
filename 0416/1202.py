@@ -23,3 +23,4 @@ for weight, value in item:
         else:
             continue
 print(ans)
+   
